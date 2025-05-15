@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- (Meta tags and other head elements remain unchanged) -->
+  <title> 🎥🔧🔗Visual Editing with LLM-based Tool Chaining: An Efficient Distillation Approach for Real-Time Applications </title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+  <!-- Hero section -->
+ <section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            🎥🔧🔗Visual Editing with LLM-based Tool Chaining: An Efficient Distillation Approach for Real-Time Applications
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/oren-sultan-93039146/" target="_blank">Oren Sultan<sup>1, 2</sup></a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/alexander-khasin-63871652/" target="_blank">Alex Khasin<sup>2</sup></a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/guy-shiran-b66650127/" target="_blank">Guy Shiran<sup>2</sup></a>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/asi-messica-02a80/" target="_blank">Asnat Greenstein-Messica<sup>2</sup></a>,</span>
+            <span class="author-block">
+              <a href="http://www.hyadatalab.com/" target="_blank">Dafna Shahaf<sup>1</sup></a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <b>(1) The Hebrew University of Jerusalem; (2) Lightricks</b><br>
+            </span>
+            <br>
+            <span class="author-block">
+              <b>EMNLP 2024 (Main Conference, Industry Track)</b>
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://aclanthology.org/2024.emnlp-industry.96.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/orensultan/AIRecolor" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2410.02952" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+              <a href="https://www.orensultan.com/files/posters/AIRecolorPoster.pdf" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-file-pdf"></i>
+                </span>
+                <span>Poster</span>
+              </a>
+            </span>
+
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=wdGOYrtm1Oc" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <!-- Teaser video -->
+  <section class="hero teaser" style="margin-top: 50px;">
+  <div class="container is-max-desktop" style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; text-align: center;">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop style="width: 60%; height: 400px;">
+        <!-- Your video here -->
+        <source src="static/videos/ai_recolor_3examples.mp4" type="video/mp4">
+      </video>
+      <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+        An illustration of our visual editing task. Users input an image/video and specify the desired visual appearance. <br>
+        For example: <br>
+        <b>(1)</b> "Golden hour" will result in more yellow warm temperature and golden tone of the golden hour filter look. <br>
+        <b>(2)</b> "Dark atmosphere" will result in darker colors. <br>
+        <b>(3)</b> "🥶" cold face emoji will result in more blue colors to emphasize the cold temperature and freezing weather.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- End teaser video -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present a practical distillation approach to fine-tune LLMs for invoking tools in real-time applications. We focus on visual editing tasks; specifically, we modify images and videos by interpreting user stylistic requests, specified in natural language ("golden hour""), using an LLM to select the appropriate tools and their parameters to achieve the desired visual effect. We found that proprietary LLMs such as GPT-3.5-Turbo show potential in this task, but their high cost and latency make them unsuitable for real-time applications. In our approach, we fine-tune a (smaller) student LLM with guidance from a (larger) teacher LLM and behavioral signals. We introduce offline metrics to evaluate student LLMs. Both online and offline experiments show that our student models manage to match the performance of our teacher model (GPT-3.5-Turbo), significantly reducing costs and latency. Lastly, we show that fine-tuning was improved by 25% in low-data regimes using augmentation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+<!-- Image Section for "Our Task" -->
+<section class="image-section" style="margin-top: 100px;">
+  <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+    <h2 class="title is-3">Our Task</h2>
+    <img src="static/images/our_task.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
+    <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+      An illustration of our visual editing task. Users input an image/video and specify the desired visual appearance (upper row: source images, middle: user intents). An LLM interprets these intents, selects tools, and sets parameters. The bottom row displays the generated images by applying the LLM's output in our app. For example, inputting "Morocco" (left) results in warm hues typical of Moroccan landscapes, reflecting its deserts.
+    </p>
+  </div>
+</section>
+
+<!-- Image Section for "Our Distillation Framework" -->
+<section class="image-section" style="margin-top: 100px;"> <!-- Adjusted margin-top -->
+  <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+    <h2 class="title is-3">Our Distillation Framework</h2>
+    <img src="static/images/distillation_framework.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
+    <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+      <b>(1)</b> We create a dataset by collecting user intents and the output (or potentially multiple outputs, if several users expressed the same intent) of our teacher LLM.
+      We ensure high quality by keeping outputs users chose to export frequently (one output with the highest export rate per intent).
+      After data processing, we randomly split the data into training and test sets. <br>
+      <b>(2)</b> We fine-tune a smaller student LLM on our dataset. <br>
+      <b>(3)</b> Offline, we evaluate the student LLM's selection of tools and predicted parameters. <br>
+      <b>(4)</b> To improve fine-tuning in low-data regimes, we use an LLM to augment the training data by generating similar samples (e.g., "cool tone" from "cool morning") to mistakes of the student LLM. <br>
+      <b>(5)</b> If a better student model is found offline, we conduct an online A/B test.
+    </p>
+  </div>
+</section>
+
+
+
+
+
+<!-- Image carousel -->
+<section class="hero is-small" style="margin-top: 150px;">
+  <div class="hero-body" style="display: flex; justify-content: center; align-items: center;">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel" style="display: flex; justify-content: center; align-items: center;">
+        <div class="item" style="text-align: center;">
+          <h2 class="title is-3">Experiments</h2>
+          <img src="static/images/exp1.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+            Offline evaluation results for our student models. Metrics include (tool-selection score, quality score, final score), and the average final score across the tools (Overall).
+            Results show that FlanT5-base performs very similarly to Llama-2-7b-chat-hf, with only a 0.02 gap (rows 1, 4).
+            Interestingly, both models perform better on a test subset with more popular user intents (r_5 > r_3 > All), where r_i denotes user intents with at least i calls.
+          </p>
+        </div>
+        <div class="item" style="text-align: center;">
+          <img src="static/images/reality_check.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+            Output images for reality check. Here are examples of samples given to our annotators to evaluate.
+            For each sample, they were asked two binary questions:
+            (1) whether the image is relevant to the intent, and (2) whether the student models correctly mimic the teacher model (see Section 4.2).
+            Each sample includes the source image and the outputs of the teacher LLM along with the outputs from both of our student LLMs.
+            Based on the annotator’s majority vote: In the first sample: (1) All models produced results relevant to the intent “Morocco” (e.g., warm hues, typical of Moroccan landscapes, reflecting its deserts).
+            (2) Both student models successfully mimicked the teacher LLM.
+            In the second sample: (1) All models produced results relevant to the intent “The Matrix” (e.g., darkness, green tint, and cyberpunk aesthetic)
+            (2) Both student models did not mimic the teacher LLM well.
+          </p>
+        </div>
+        <div class="item" style="text-align: center;">
+          <img src="static/images/online_ab_test_exps.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+             In addition to offline evaluation, we conducted two online A/B tests. <br>
+             First, we compared our teacher, GPT-3.5-Turbo (tested on 94,317 projects), with Llama-2-7b-chat-hf (93,495 projects).
+             We measured project completion rates as an indicator of user satisfaction.
+             The completion rate for the teacher was 96.1% of that of Llama-2-7b-chat-hf (no statistical significance). Thus, we conclude they are comparable.  <br>
+             In our second A/B test, we compared our student models. FlanT5-base (tested on 20,294 projects) achieved a completion rate of 99% of that of Llama-2-7b-chat-hf (20,282 projects).
+             Thus, we conclude they are comparable and choose FlanT5-base for its lower latency and cost. <br>
+             Importantly, we are encouraged by the fact that our offline metrics align with the results of the online A/B tests
+          </p>
+        </div>
+
+        <div class="item" style="text-align: center;">
+          <img src="static/images/exp2.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+            FlanT5-base’s performance in subsets of the train set, with and without augmentation.
+            We can see that augmentation is effective in limited data increasing the overall score by 0.13 for the 1/8 sample.
+            With larger training subsets, the proportion of augmentations (%) decreases, reducing overall improvement as expected.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End image carousel -->
+
+
+<!--  &lt;!&ndash; Youtube video &ndash;&gt;-->
+<!--  <section class="hero is-small is-light" style="margin-top: 100px;">-->
+<!--    <div class="hero-body">-->
+<!--      <div class="container">-->
+<!--        <h2 class="title is-3">Lightricks Real Use-case: Visual Editing with LLM-based Tool Chaining</h2>-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--          <div class="column is-four-fifths">-->
+<!--            <div class="publication-video">-->
+<!--              <iframe src="https://www.youtube.com/embed/XWM7MM4M2Ws" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--  &lt;!&ndash; End youtube video &ndash;&gt;-->
+
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title">EMNLP 2024 Poster</h2>
+        <iframe src="static/pdfs/AIRecolorPoster.pdf" width="100%" height="550"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTex citation -->
+  <section class="section" id="BibTeX" style="margin-top: 100px;">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{sultan2024visualediting,
+  title={Visual Editing with LLM-based Tool Chaining: An Efficient Distillation Approach for Real-Time Applications},
+  author={Sultan, Oren and Khasin, Alex and Shiran, Guy and Greenstein-Messica, Asnat and Shahaf, Dafna},
+  journal={arXiv preprint arXiv:2210.12197},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+  <!-- End BibTeX citation -->
+
+<!--  <footer class="footer">-->
+<!--    <div class="container">-->
+<!--      <div class="columns is-centered">-->
+<!--        <div class="column is-8">-->
+<!--          <div class="content">-->
+<!--            <p>-->
+<!--              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.-->
+<!--              <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative-->
+<!--              Commons Attribution-ShareAlike 4.0 International License</a>.-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </footer>-->
+
+  <!-- Statcounter tracking code -->
+  <script type="text/javascript">
+  var sc_project=12822541;
+  var sc_invisible=1;
+  var sc_security="46936e0e";
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js" async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+  href="https://statcounter.com/" target="_blank"><img class="statcounter"
+  src="https://c.statcounter.com/12822541/0/46936e0e/1/" alt="Web Analytics"
+  referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+  <!-- End of Statcounter Code -->
+
+</body>
+</html>

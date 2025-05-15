@@ -151,6 +151,7 @@
 <section class="image-section" style="margin-top: 100px;">
   <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
     <h2 class="title is-3">Problem Formulation</h2>
+    <img src="static/images/dataset_example.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
     <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
       We demonstrate our ideas in the domain of Euclidean geometry. Our input is a geometry problem, described in both natural language and via a formal representation. The description includes the geometric entities involved (e.g., lines, angles), their relationships (e.g., perpendicular lines, collinear points), and measurements (e.g., the measure of an angle) or algebraic expressions over them. We also receive a goal, some quantity to be determined (e.g., the length of a line). In addition, the model has access to a dictionary of theorems that may be used in the proof. The output is a formal proof that derives the goal from the given conditions and theorems, along with the final, numeric answer. The proof consists of steps, each applying a specific theorem from the dictionary.
     </p>
@@ -170,16 +171,16 @@
   </div>
 </section>
 
-<!-- Image Section for "Our Distillation Framework" -->
-<section class="image-section" style="margin-top: 100px;"> <!-- Adjusted margin-top -->
-  <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
-    <h2 class="title is-3">Dataset</h2>
-    <img src="static/images/dataset_example.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
-    <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-      An example of a problem from the FormalGeo-7k dataset (Level 3). Left: Problem inputs, including a natural language description and formal representations -- construction (entities and relations), extended construction (inferred shapes and conditions based on extension rules, such as Angle(ECA) = Angle(ACE)), conditions (e.g., angle measures), and goal (the conclusion to be proven). Each problem also includes both a numeric answer (or expression) and a formal proof. A proof is composed of steps, each invoking a specific theorem from the dictionary. Right: The Geometry Theorem Dictionary, which defines available theorems (including required arguments and variation id). The full dataset also includes diagrams, but we do not use them here.
-    </p>
-  </div>
-</section>
+<!--&lt;!&ndash; Image Section for "Our Distillation Framework" &ndash;&gt;-->
+<!--<section class="image-section" style="margin-top: 100px;"> &lt;!&ndash; Adjusted margin-top &ndash;&gt;-->
+<!--  <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">-->
+<!--    <h2 class="title is-3">Dataset</h2>-->
+<!--    <img src="static/images/dataset_example.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> &lt;!&ndash; Increased margin-bottom &ndash;&gt;-->
+<!--    <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">-->
+<!--      An example of a problem from the FormalGeo-7k dataset (Level 3). Left: Problem inputs, including a natural language description and formal representations &#45;&#45; construction (entities and relations), extended construction (inferred shapes and conditions based on extension rules, such as Angle(ECA) = Angle(ACE)), conditions (e.g., angle measures), and goal (the conclusion to be proven). Each problem also includes both a numeric answer (or expression) and a formal proof. A proof is composed of steps, each invoking a specific theorem from the dictionary. Right: The Geometry Theorem Dictionary, which defines available theorems (including required arguments and variation id). The full dataset also includes diagrams, but we do not use them here.-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</section>-->
 
 
 

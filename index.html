@@ -59,7 +59,7 @@
               </span>
 
               <span class="link-block">
-                <a href="https://github.com/orensul/LLMProofGenerator" target="_blank"
+                <a href="https://github.com/orensul/LLMs_proof_generation" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fab fa-github"></i>
@@ -137,7 +137,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Large language models (LLMs) struggle with formal domains that require rigorous logical deduction and symbolic reasoning, such as mathematical proof generation. We propose a neuro-symbolic approach that leverages LLMs' generative strengths while augmenting them with structured components to overcome this challenge. As a proof-of-concept, we focus on geometry problems. Our approach is two-fold: (1) We retrieve analogous problems and use their proofs to guide the LLM, and (2) a formal verifier evaluates the generated proofs, prompting the model to iteratively correct them.  We demonstrate that our method significantly improves proof accuracy for OpenAI’s o1 model (58%-70% improvement); both analogous problems and the verifier's feedback contribute to these gains. More broadly, shifting to LLMs that generate provably correct conclusions could dramatically improve their reliability, accuracy and consistency, unlocking complex tasks and critical real-world applications that require trustworthiness.
+              Large language models (LLMs) struggle with formal domains that require rigorous logical deduction and symbolic reasoning, such as mathematical proof generation. We propose a neuro-symbolic approach that combines LLMs' generative strengths with structured components to overcome this challenge. As a proof-of-concept, we focus on geometry problems. Our approach is two-fold: (1) we retrieve analogous problems and use their proofs to guide the LLM, and (2) a formal verifier evaluates the generated proofs and provides feedback, helping the model fix incorrect proofs. We demonstrate that our method significantly improves proof accuracy for OpenAI's o1 model (58%-70% improvement); both analogous problems and the verifier's feedback contribute to these gains. More broadly, shifting to LLMs that generate provably correct conclusions could dramatically improve their reliability, accuracy and consistency, unlocking complex tasks and critical real-world applications that require trustworthiness.
             </p>
           </div>
         </div>
@@ -151,9 +151,9 @@
 <section class="image-section" style="margin-top: 100px;">
   <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
     <h2 class="title is-3">Problem Formulation</h2>
-    <img src="static/images/dataset_example.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
+    <img src="static/images/dataset_example.jpeg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
     <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-      We demonstrate our ideas in the domain of Euclidean geometry. Our input is a geometry problem, described in both natural language and via a formal representation. The description includes the geometric entities involved (e.g., lines, angles), their relationships (e.g., perpendicular lines, collinear points), and measurements (e.g., the measure of an angle) or algebraic expressions over them. We also receive a goal, some quantity to be determined (e.g., the length of a line). In addition, the model has access to a dictionary of theorems that may be used in the proof. The output is a formal proof that derives the goal from the given conditions and theorems, along with the final, numeric answer. The proof consists of steps, each applying a specific theorem from the dictionary.
+      We demonstrate our ideas in the domain of Euclidean geometry. Our input is a geometry problem, described in both natural language and via a formal representation. The description includes the geometric entities involved (e.g., lines, angles), their relationships (e.g., perpendicular, collinear), and measurements or algebraic expressions over them. We also receive a <b>goal</b>, some quantity to be determined (e.g., the length of a line). In addition, the model has access to a dictionary of theorems that may be used in the proof. The output is a formal proof that derives the goal from the given conditions and theorems, along with the final, numeric answer. The proof consists of steps, each applying a specific theorem from the dictionary.
     </p>
   </div>
 </section>
@@ -164,9 +164,9 @@
 <section class="image-section" style="margin-top: 100px;">
   <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
     <h2 class="title is-3">Approach</h2>
-    <img src="static/images/GeometryLLMPipeline.jpg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
+    <img src="static/images/GeometryLLMPipeline.jpeg" alt="Website" style="max-width: 80%; height: auto; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
     <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-      Our neuro-symbolic approach. Given a target problem from the FormalGeo-7k dataset, we first convert it into an abstract form by replacing entity names (e.g., lines, angles) and specific numeric values with placeholders. We then retrieve structurally similar problems from the abstracted dataset by computing Jaccard similarity over key formal components: construction (entities and geometric relations), conditions (e.g., angle equalities, segment lengths), and goal (the conclusion to be proven). This is based on the observation that structurally similar problems often share proof patterns. The retrieved problems, along with their corresponding formal proofs, are presented to an LLM as in-context examples, together with the available theorems from the Geometry Theorem Dictionary, to guide proof generation for the target problem. Finally, a symbolic verifier iteratively checks the generated proof and provides feedback until a correct proof is produced or a retry limit is reached.
+      <b>Our neuro-symbolic approach.</b> Given a target problem from the FormalGeo-7k dataset, we first convert it into an <b>abstract form</b> by replacing entity names (e.g., lines, angles) and specific numeric values with placeholders. We then <b>retrieve structurally similar problems</b> from the abstracted dataset by computing Jaccard similarity over key formal components: <b>construction</b> (entities and geometric relations), <b>conditions</b> (e.g., angle equalities, segment lengths), and <b>goal</b> (the conclusion to be proven). This is based on the observation that structurally similar problems often share proof patterns. The retrieved problems, along with their corresponding formal proofs, are presented to an LLM as <b>in-context examples</b>, together with the available theorems from the Geometry Theorem Dictionary, to guide <b>proof generation</b> for the target problem. Finally, a <b>symbolic verifier</b> iteratively checks the generated proof and provides feedback until a correct proof is produced or a retry limit is reached.
     </p>
   </div>
 </section>
@@ -193,19 +193,19 @@
       <div id="results-carousel" class="carousel results-carousel" style="display: flex; justify-content: center; align-items: center;">
         <div class="item" style="text-align: center;">
           <h2 class="title is-3">Experiments</h2>
-          <img src="static/images/Experiments.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <img src="static/images/Experiments.jpeg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
           <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-            % correct proofs per level of difficulty (50 samples, 10 problems per level). Our analogy-based method outperforms the o1 base model (non-analogy) in all baselines. Each component -- analogy retrieval, verifier feedback, and multiple runs, significantly contribute to performance. In total, our full pipeline (blue triangle) achieves the highest overall accuracy of 80\%, vs. 52\% of the corresponding base model baseline (red hollow triangle).
+            % correct proofs per level of difficulty (50 samples, 10 per level). Our analogy-based method outperforms the o1 base model (non-analogy) in all settings. Analogy retrieval, verifier feedback, and multiple runs each significantly contributes to performance. Our full pipeline (blue triangle) outperforms the baseline in every level, reaching an average aggregated accuracy of 80%. Even without multiple runs (blue square), performance remains strong at 68%, far exceeding the 10% of the base model baseline (red hollow circle).
           </p>
         </div>
         <div class="item" style="text-align: center;">
-          <img src="static/images/average_runs_retries.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <img src="static/images/average_runs_retries.jpeg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
           <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-            Average number of retries (top) and runs (bottom) per problem by difficulty level. Our analogy-based method consistently outperforms the base model, with fewer retries and runs across all levels.
+            Average number of retries (top) and runs (bottom) per problem by difficulty level. The dashed line represents maximum allowed. Our analogy-based method consistently outperforms the base model, with fewer retries and runs across all levels.
           </p>
         </div>
         <div class="item" style="text-align: center;">
-          <img src="static/images/ErrorDist.jpg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <img src="static/images/ErrorDist.jpeg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
           <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
              Error distribution by tier for our method vs. the base model. Our method reduces errors across all tiers, with tier-1 errors being most frequent in both.
           </p>

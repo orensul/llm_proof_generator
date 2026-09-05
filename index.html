@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- (Meta tags and other head elements remain unchanged) -->
-  <title> Toward Reliable Proof Generation with LLMs </title>
+  <title> Reliable Proof Generation with LLMs via Analogical Retrieval and Symbolic Verification </title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
@@ -25,7 +25,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
-            Toward Reliable Proof Generation with LLMs: A Neuro-Symbolic Approach
+            Reliable Proof Generation with LLMs via Analogical Retrieval and Symbolic Verification: A Case Study in Euclidean Geometry
           </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -132,7 +132,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Large language models (LLMs) struggle with formal domains that require rigorous logical deduction and symbolic reasoning, such as mathematical proof generation. We propose a neuro-symbolic approach that combines LLMs' generative strengths with structured components to overcome this challenge. As a proof-of-concept, we focus on geometry problems. Our approach is two-fold: (1) we retrieve analogous problems and use their proofs to guide the LLM, and (2) a formal verifier evaluates the generated proofs and provides feedback, helping the model fix incorrect proofs. We demonstrate that our method significantly improves proof accuracy for OpenAI's o1 model (58%-70% improvement); both analogous problems and the verifier's feedback contribute to these gains. More broadly, shifting to LLMs that generate provably correct conclusions could dramatically improve their reliability, accuracy and consistency, unlocking complex tasks and critical real-world applications that require trustworthiness.
+              Large language models (LLMs) struggle with formal domains that require rigorous logical deduction and symbolic reasoning, such as mathematical proof generation. We propose a neuro-symbolic approach centered on the hypothesis that structurally analogous problems often admit similar proofs. As a proof-of-concept, we focus on SAT-level geometry problems. Our approach is two-fold: (1) We retrieve analogous problems and use their proofs to guide the LLM, and (2) a formal verifier evaluates the generated proofs and provides feedback, helping the model fix incorrect proofs. Our complete pipeline substantially improves proof accuracy across model families, achieving 68%-96% accuracy compared with 10%-44% for LLM-only baselines that use neither analogy retrieval nor verifier feedback. When comparing against models with the same verifier feedback and inference budget, analogical guidance improves accuracy from 88% to 96% for GPT-5, 78% to 86% for Claude Sonnet 4.6, 72% to 86% for Gemini-Flash-2.5, and 52% to 80% for OpenAI o1. More broadly, shifting to LLMs that generate provably correct conclusions has the potential to dramatically improve their reliability, accuracy and consistency, unlocking complex tasks and critical real-world applications that require trustworthiness.
             </p>
           </div>
         </div>
@@ -181,28 +181,120 @@
 
 
 
+<!-- Main results table -->
+<section class="section" style="margin-top: 100px;">
+  <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+    <h2 class="title is-3">Results Across Model Families</h2>
+    <div class="table-container" style="max-width: 100%;">
+      <table class="table is-bordered is-striped is-hoverable" style="margin: 0 auto; font-size: 1.05rem;">
+        <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align: middle;">Model</th>
+            <th colspan="3" class="has-text-centered">First run, no retries</th>
+            <th colspan="3" class="has-text-centered">First run, w/ retries</th>
+            <th colspan="3" class="has-text-centered">Multiple runs, w/ retries</th>
+          </tr>
+          <tr>
+            <th>base<sub>1,1</sub></th><th>ours<sub>1,1</sub></th><th>&Delta;</th>
+            <th>base<sub>1,5</sub></th><th>ours<sub>1,5</sub></th><th>&Delta;</th>
+            <th>base<sub>3,5</sub></th><th>ours<sub>3,5</sub></th><th>&Delta;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>o1</b></td><td>10%</td><td><b>48%</b></td><td>+38%</td><td>38%</td><td><b>68%</b></td><td>+30%</td><td>52%</td><td><b>80%</b></td><td>+28%</td></tr>
+          <tr><td><b>GPT-5</b></td><td>44%</td><td><b>64%</b></td><td>+20%</td><td>80%</td><td><b>96%</b></td><td>+16%</td><td>88%</td><td><b>96%</b></td><td>+8%</td></tr>
+          <tr><td><b>Gemini-Flash-2.5</b></td><td>22%</td><td><b>48%</b></td><td>+26%</td><td>58%</td><td><b>74%</b></td><td>+16%</td><td>72%</td><td><b>86%</b></td><td>+14%</td></tr>
+          <tr><td><b>Claude Sonnet-4.6</b></td><td>28%</td><td><b>60%</b></td><td>+32%</td><td>58%</td><td><b>78%</b></td><td>+20%</td><td>78%</td><td><b>86%</b></td><td>+8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+      Proof accuracy (%) of the base model and our analogy-based method across settings, on 50 FormalGeo-7k problems (10 per difficulty level, 1-5). base<sub>i,j</sub> denotes the base model (random few-shot examples and the full theorem dictionary) with up to <i>i</i> runs and <i>j</i> verifier-guided retries, while ours<sub>i,j</sub> denotes our method (retrieved analogies and an analogy-derived theorem dictionary). &Delta; indicates absolute improvement (percentage points). Our method consistently improves proof accuracy across all models and settings: our complete pipeline (ours<sub>3,5</sub>) achieves 68%-96% accuracy, compared with 10%-44% for LLM-only baselines (base<sub>1,1</sub>). Under matched inference budgets with verifier feedback (base<sub>3,5</sub> vs. ours<sub>3,5</sub>), analogical guidance still improves accuracy for every model. At the same time, it substantially reduces the theorem dictionary size (e.g., from ~18K to ~2.5K tokens on average for o1), making the baseline roughly 3&times; more expensive.
+    </p>
+  </div>
+</section>
+<!-- End main results table -->
+
+<!-- Ablation table -->
+<section class="section" style="margin-top: 60px;">
+  <div class="container is-max-desktop" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+    <h2 class="title is-3">Ablation: Analogy Retrieval and Theorem Dictionary</h2>
+    <div class="table-container" style="max-width: 100%;">
+      <table class="table is-bordered is-striped is-hoverable" style="margin: 0 auto; font-size: 1.05rem;">
+        <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align: middle;">Setting</th>
+            <th rowspan="2" style="vertical-align: middle;">Examples</th>
+            <th rowspan="2" style="vertical-align: middle;">Dictionary</th>
+            <th colspan="3" class="has-text-centered">Gemini-2.5-Flash</th>
+            <th colspan="3" class="has-text-centered">Claude Sonnet 4.6</th>
+          </tr>
+          <tr>
+            <th>1 run</th><th>1 run + retries</th><th>3 runs + retries</th>
+            <th>1 run</th><th>1 run + retries</th><th>3 runs + retries</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Ours</b></td><td>Analogies</td><td>Analogy-derived</td><td><b>48%</b></td><td><b>74%</b></td><td><b>86%</b></td><td><b>60%</b></td><td><b>78%</b></td><td><b>86%</b></td></tr>
+          <tr><td>(i)</td><td>Analogies</td><td>Full</td><td>30%</td><td>68%</td><td>78%</td><td>42%</td><td>62%</td><td>78%</td></tr>
+          <tr><td>(ii)</td><td>Random</td><td>Random-derived</td><td>24%</td><td>54%</td><td>72%</td><td>28%</td><td>60%</td><td>72%</td></tr>
+          <tr><td>(iii)</td><td>Analogies</td><td>Random (size-matched)</td><td>32%</td><td>60%</td><td>78%</td><td>36%</td><td>66%</td><td>74%</td></tr>
+          <tr><td><b>Baseline</b></td><td>Random</td><td>Full</td><td>22%</td><td>58%</td><td>72%</td><td>28%</td><td>58%</td><td>78%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+      Controlled ablation of analogy retrieval and theorem-dictionary construction on 50 problems using Gemini-2.5-Flash and Claude Sonnet 4.6. Our full method performs best across all inference settings. Settings (i) and (iii), which use retrieved analogies, outperform setting (ii), demonstrating the benefit of analogy retrieval, while our gains over (i) and (iii) demonstrate the additional benefit of analogy-derived theorem selection.
+    </p>
+  </div>
+</section>
+<!-- End ablation table -->
+
 <!-- Image carousel -->
-<section class="hero is-small" style="margin-top: 150px;">
+<section class="hero is-small" style="margin-top: 100px;">
   <div class="hero-body" style="display: flex; justify-content: center; align-items: center;">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel" style="display: flex; justify-content: center; align-items: center;">
         <div class="item" style="text-align: center;">
-          <h2 class="title is-3">Experiments</h2>
-          <img src="static/images/Experiments.jpeg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <h2 class="title is-3">Per-Level Results and Analysis</h2>
+          <img src="static/images/Results_o1.jpeg" style="max-width: 60%; height: auto; margin-bottom: 15px;">
           <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-            % correct proofs per level of difficulty (50 samples, 10 per level). Our analogy-based method outperforms the o1 base model (non-analogy) in all settings. Analogy retrieval, verifier feedback, and multiple runs each significantly contributes to performance. Our full pipeline (blue triangle) outperforms the baseline in every level, reaching an average aggregated accuracy of 80%. Even without multiple runs (blue square), performance remains strong at 68%, far exceeding the 10% of the base model baseline (red hollow circle).
+            <b>OpenAI o1.</b> % correct proofs per level of difficulty (50 samples, 10 per level). Our analogy-based method outperforms the o1 base model (non-analogy) in all settings. Analogy retrieval, verifier feedback, and multiple runs each significantly contributes to performance. Our full pipeline (blue triangle) outperforms the baseline in every level, reaching an average aggregated accuracy of 80%. Even without multiple runs (blue square), performance remains strong at 68%, far exceeding the 10% of the base model baseline (red hollow circle).
           </p>
         </div>
         <div class="item" style="text-align: center;">
-          <img src="static/images/average_runs_retries.jpeg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <h2 class="title is-3">Per-Level Results and Analysis</h2>
+          <img src="static/images/Results_GPT5.jpeg" style="max-width: 60%; height: auto; margin-bottom: 15px;">
           <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-            Average number of retries (top) and runs (bottom) per problem by difficulty level. The dashed line represents maximum allowed. Our analogy-based method consistently outperforms the base model, with fewer retries and runs across all levels.
+            <b>GPT-5.</b> % correct proofs per level of difficulty (50 samples, 10 per level). Our analogy-based method outperforms the GPT-5 base model (non-analogy) in all settings. Our full pipeline (blue triangle) outperforms the baseline in every level, reaching an average aggregated accuracy of 96%. Even without multiple runs (blue square), performance remains stable at 96%, far exceeding the 44% of the base model baseline (red hollow circle).
           </p>
         </div>
         <div class="item" style="text-align: center;">
-          <img src="static/images/ErrorDist.jpeg" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+          <h2 class="title is-3">Per-Level Results and Analysis</h2>
+          <img src="static/images/Results_Gemini.jpeg" style="max-width: 60%; height: auto; margin-bottom: 15px;">
           <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
-             Error distribution by tier for our method vs. the base model. Our method reduces errors across all tiers, with tier-1 errors being most frequent in both.
+            <b>Gemini-Flash-2.5.</b> % correct proofs per level of difficulty (50 samples, 10 per level). Our analogy-based method outperforms the Gemini-Flash-2.5 base model (non-analogy) in all settings. Our full pipeline (blue triangle) outperforms the baseline in every level, reaching an average aggregated accuracy of 86%. Even without multiple runs (blue square), performance remains strong at 74%, far exceeding the 22% of the base model baseline (red hollow circle).
+          </p>
+        </div>
+        <div class="item" style="text-align: center;">
+          <h2 class="title is-3">Per-Level Results and Analysis</h2>
+          <img src="static/images/Results_Claude.jpeg" style="max-width: 60%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+            <b>Claude Sonnet-4.6.</b> % correct proofs per level of difficulty (50 samples, 10 per level). Our analogy-based method outperforms the Claude Sonnet-4.6 base model (non-analogy) in all settings. Our full pipeline (blue triangle) outperforms the baseline in every level, reaching an average aggregated accuracy of 86%. Even without multiple runs (blue square), performance remains strong at 78%, far exceeding the 28% of the base model baseline (red hollow circle).
+          </p>
+        </div>
+        <div class="item" style="text-align: center;">
+          <h2 class="title is-3">Per-Level Results and Analysis</h2>
+          <img src="static/images/average_runs_retries.jpeg" style="max-width: 45%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+            Average number of retries (top) and runs (bottom) per problem by difficulty level, for o1. The dashed line represents maximum allowed. Our analogy-based method consistently outperforms the base model, with fewer retries and runs across all levels: on average, it uses 4.6 retries and 1.58 runs per problem, compared to 8.92 retries and 2.12 runs for the base model.
+          </p>
+        </div>
+        <div class="item" style="text-align: center;">
+          <h2 class="title is-3">Per-Level Results and Analysis</h2>
+          <img src="static/images/ErrorDist.jpeg" style="max-width: 45%; height: auto; margin-bottom: 15px;">
+          <p class="subtitle" style="text-align: left; max-width: 80%; margin: 20px auto 0;">
+             Error distribution by tier for our method vs. the (o1) base model. Our method reduces errors across all tiers, with tier-1 (syntax) errors being most frequent in both. Tier-1 errors are frequent but easily corrected with verifier feedback, whereas tier-2 (premise violation) errors reflect deeper geometric reasoning failures that often persist across retries.
           </p>
         </div>
       </div>
@@ -242,8 +334,8 @@
   <section class="section" id="BibTeX" style="margin-top: 100px;">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{sultan2025towards,
-  title={Towards Reliable Proof Generation with LLMs: A Neuro-Symbolic Approach},
+    <pre><code>@article{sultan2025reliable,
+  title={Reliable Proof Generation with LLMs via Analogical Retrieval and Symbolic Verification: A Case Study in Euclidean Geometry},
   author={Sultan, Oren and Stern, Eitan and Shahaf, Dafna},
   journal={arXiv preprint arXiv:2505.14479},
   year={2025}
